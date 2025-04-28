@@ -1,0 +1,22 @@
+.c-filtro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem 0;
+    gap: 0.5rem;
+  }
+  
+  .c-filtro button {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    border: 1px solid #ffffff50;
+    border-radius: 4px;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .c-filtro button:hover {
+    background-color: #646cff;
+  }
+  
