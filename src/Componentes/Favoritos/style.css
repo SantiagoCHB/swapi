@@ -1,0 +1,41 @@
+.c-favoritos {
+    margin-top: 2rem;
+  }
+  
+  .c-favoritos h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .c-lista-favoritos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .c-favorito-item {
+    background-color: #1f1f1f;
+    padding: 0.5rem;
+    border-radius: 8px;
+    width: 120px;
+    transition: transform 0.3s, background-color 0.3s;
+    cursor: pointer;
+  }
+  
+  .c-favorito-item:hover {
+    transform: scale(1.08);
+    background-color: #646cff70;
+  }
+  
+  .c-favorito-item img {
+    border-radius: 6px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .c-favorito-item p {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  

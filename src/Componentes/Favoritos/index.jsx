@@ -1,24 +1,31 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AppContext } from '../../Contexto/contexto';
 import { useNavigate } from 'react-router-dom';
+import  LogoTitulo from '../LogoTitulo/LogoTitulo';
+import './style.css';
 
 function Favoritos() {
   const { favoritos } = useContext(AppContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    document.title = 'Universo Star Wars - Favoritos';
+  }, []);
+
   return (
     <>
+      <LogoTitulo />
+      <h2>Favoritos</h2>
+
       {favoritos.length === 0 ? (
         <p>No hay favoritos aún.</p>
       ) : (
-        <div className="c-lista">
-          <h2>Favoritos</h2>
+        <section className="c-lista">
           {favoritos.map((item, index) => (
             <div
-              className="c-lista-item"
+              className="c-lista-pokemon"
               key={index}
               onClick={() => {
-                // Navegamos a la ruta correcta según el tipo de item
                 if (item.tipo === 'planeta') {
                   navigate(`/planeta/${item.id}`);
                 } else if (item.tipo === 'personaje') {
@@ -38,18 +45,20 @@ function Favoritos() {
                     ? `/assets/personajes/${item.id}.jpg`
                     : item.tipo === 'nave'
                     ? `/assets/naves/${item.id}.jpg`
+                    : item.tipo === 'planeta'
+                    ? `/assets/planetas/${item.id}.jpg`
                     : '/assets/default.jpeg'
                 }
                 alt={item.nombre}
-                width="100"
-                height="auto"
+                width="auto"
+                height="60"
                 loading="lazy"
-                onError={(e) => { e.target.src = '/assets/default.jpeg'; }} // Imagen por defecto si no existe
+                onError={(e) => { e.target.src = '/assets/default.jpeg'; }}
               />
               <p>{item.nombre}</p>
             </div>
           ))}
-        </div>
+        </section>
       )}
     </>
   );

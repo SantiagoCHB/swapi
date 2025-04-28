@@ -15,16 +15,9 @@
     gap: 15px;
     margin-bottom: 80px; /* para que no tape el menú */
   }
-  
-  .c-lista-pokemon {
-    width: 120px;
-    background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+
+  .c-lista p{
+    color: white;
   }
   
   .c-lista-pokemon:hover {
@@ -40,6 +33,6 @@
     margin-top: 8px;
     font-weight: bold;
     font-size: 14px;
-    color: #333;
+    color: white;
   }
   

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Filtro from '../Filtro'; // Asegúrate de importar el componente de Filtro
+import Filtro from '../Filtro';
+import  LogoTitulo from '../LogoTitulo/LogoTitulo';
 import './style.css';
 
 function Especies() {
@@ -20,20 +21,23 @@ function Especies() {
       return nombre.startsWith(letraSeleccionada.toLowerCase());
     }
 
-    return true; // Mostrar todos si no hay filtro ni búsqueda
+    return true;
   });
+
+  useEffect(() => {
+    document.title = 'Universo Star Wars - Especies';
+  }, []);
 
   useEffect(() => {
     const fetchEspecies = async () => {
       try {
         const promises = [];
-        for (let i = 1; i <= 19; i++) {  // El número de especies puede variar, ajustalo si es necesario
+        for (let i = 1; i <= 19; i++) {
           promises.push(fetch(`https://www.swapi.tech/api/species/${i}`).then(res => res.json()));
         }
 
         const results = await Promise.all(promises);
 
-        // Filtrar solo los que sí tienen data válida
         const especiesValidas = results
           .filter(res => res?.result?.properties?.name)
           .map(res => res.result);
@@ -49,11 +53,12 @@ function Especies() {
 
   const handleLetraChange = (letra) => {
     setLetraSeleccionada(letra);
-    setBusqueda(''); // Limpiar búsqueda cuando seleccionas una letra
+    setBusqueda('');
   };
 
   return (
-    <div className="c-especies">
+    <>
+      <LogoTitulo />
       <h2>Especies</h2>
 
       <input
@@ -62,7 +67,7 @@ function Especies() {
         value={busqueda}
         onChange={(e) => {
           setBusqueda(e.target.value);
-          setLetraSeleccionada('All'); // Resetear letra cuando escribes en buscador
+          setLetraSeleccionada('All');
         }}
         className="c-buscador"
       />
@@ -75,7 +80,7 @@ function Especies() {
         ) : (
           resultados.map((especie) => (
             <div
-              className="c-lista-item"
+              className="c-lista-pokemon"
               key={especie.uid}
               onClick={() => navigate(`/especie/${especie.uid}`)}
             >
@@ -83,8 +88,8 @@ function Especies() {
                 src={`/assets/especies/${especie.uid}.jpg`}
                 alt={especie.properties.name}
                 onError={(e) => { e.target.src = '/assets/especies/default.jpeg'; }}
-                width="100"
-                height="auto"
+                width="auto"
+                height="60"
                 loading="lazy"
               />
               <p>{especie.properties.name}</p>
@@ -92,7 +97,7 @@ function Especies() {
           ))
         )}
       </section>
-    </div>
+    </>
   );
 }
 

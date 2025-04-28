@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Filtro from '../Filtro';
+import  LogoTitulo from '../LogoTitulo/LogoTitulo';
 import './style.css';
 
 function Personajes() {
@@ -60,7 +61,8 @@ function Personajes() {
 
   return (
     <>
-    <h2>Personajes</h2>
+      <LogoTitulo />
+      <h2>Personajes</h2>
       <input
         type="text"
         placeholder="Buscar personaje"

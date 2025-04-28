@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Filtro from '../Filtro';
+import  LogoTitulo from '../LogoTitulo/LogoTitulo';
 import './style.css';
 
 function Naves() {
@@ -22,6 +23,10 @@ function Naves() {
 
     return true; // Mostrar todos si no hay filtro ni búsqueda
   });
+
+  useEffect(() => {
+    document.title = 'Universo Star Wars - Naves';
+  }, []);
 
   useEffect(() => {
     const fetchNaves = async () => {
@@ -63,7 +68,8 @@ function Naves() {
 
   return (
     <>
-    <h2>Naves</h2>
+      <LogoTitulo />
+      <h2>Naves</h2>
       <input
         type="text"
         placeholder="Buscar nave"

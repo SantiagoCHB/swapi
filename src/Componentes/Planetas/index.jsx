@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Filtro from '../Filtro';
+import  LogoTitulo from '../LogoTitulo/LogoTitulo';
 import './style.css';
 
 function Planetas() {
@@ -22,6 +23,10 @@ function Planetas() {
 
     return true; // Mostrar todos si no hay filtro ni búsqueda
   });
+
+  useEffect(() => {
+    document.title = 'Universo Star Wars - Planetas';
+  }, []);
 
   useEffect(() => {
     const fetchPlanetas = async () => {
@@ -68,7 +73,8 @@ function Planetas() {
 
   return (
     <>
-    <h2>Planetas</h2>
+      <LogoTitulo />
+      <h2>Planetas</h2>
       <input
         type="text"
         placeholder="Buscar planeta"
